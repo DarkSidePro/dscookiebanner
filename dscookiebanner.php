@@ -404,10 +404,11 @@ class Dscookiebanner extends Module
     {
         $id_lang = (int) $lang;
         Db::getInstance()->delete('ds_cookiebanner', 'id_lang = '.(int) $lang);
-        Db::getInstance()->update('ds_cookiebanner', array(
+        Db::getInstance()->insert('ds_cookiebanner', array(
             'cb_content' => pSQL($content),
             'id_lang' => (int) $id_lang,
         ));
+
     }
 
     public function getDatabase()
