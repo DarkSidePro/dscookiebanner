@@ -27,31 +27,22 @@
 */
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function fadeOut(el, ms) {
-    if (ms) {
-      el.style.transition = `opacity ${ms} ms`;
-    }
-    el.style.opacity = '0';
-}
-
 function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-window.onload = function() {
-    let close = document.getElementById('closeCookie'),
-        notice = document.getElementById('cookie'),
-        random = getRndInteger(0, 19234);
-        
-    if (close) {
-        close.addEventListener('click', () => {
-            setCookie('DarkSide', random, 2);
-            fadeOut(notice, 500);
-        })
-    }
-};
+
+let close = document.getElementById('closeCookie'),
+    notice = document.getElementById('cookie'),
+    random = getRndInteger(0, 19234);
+
+$('.closeCookie').on('click', function() {
+    console.log('click');
+    setCookie('DarkSide', random, 2);
+    $('div#cookie').fadeOut('fast');
+})
